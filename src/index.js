@@ -13,27 +13,31 @@ class Root extends React.Component {
 
   handleLogin = user => {
     this.setState({ currentUser: user });
-  };
+  }; 
 
   handleLogout = () => {
     this.setState({ currentUser: null });
   };
 
   render() {
-    return this.state.currentUser ? (
-      /* The Context object's Provider property take a value prop*/
-      /* the value prop is the value that gets passed down through the tree */
+    return (
+        /* The Context object's Provider property take a value prop*/
+        /* the value prop is the value that gets passed down through the tree */
+        /* To pass event handler functions down via the Context object, you can make a value object to pass, as demonstrated below*/
       <UserContext.Provider 
         value={{
           user: this.state.currentUser,
           onLogin: this.handleLogin,
           onLogout: this.handleLogout
-        }}>
-        <MainPage onLogout={this.handleLogout} />
-      </UserContext.Provider>
+        }}
+      >
+        {this.state.currentUser ? (
+        <MainPage />
     ) : (
         <LoginPage onLogin={this.handleLogin} />
-      );
+      )}
+      </UserContext.Provider>
+    );
   }
 }
 
