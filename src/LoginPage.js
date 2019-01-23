@@ -2,7 +2,7 @@ import React from 'react';
 
 import { login } from './api';
 
-import UserContext from './UserContext';
+import { UserConsumer } from './UserContext';
 
 class LoginPage extends React.Component {
   state = {
@@ -37,7 +37,7 @@ class LoginPage extends React.Component {
       /* Use render props pattern to desctructure onLogin property from the Context object */
       /* To use the destructured property from the Context object in a handler function (aka not being used in the render), you will need to set an additional parameter (the destructured property from the Context object will be passed as the argument) in the handler function */
       /* Then you will need to make an es6 arrow function for the, in this case, onSubmit prop, that takes the event (e) and calls handleSubmit with the event and the destructured property/function (which we got from Context), as the arguments */
-      <UserContext.Consumer>
+      <UserConsumer>
         {({ onLogin }) => (
           <div className="LoginPage">
             <form onSubmit={e => this.handleSubmit(e, onLogin)}>
@@ -65,7 +65,7 @@ class LoginPage extends React.Component {
             </form>
           </div>
         )}
-      </UserContext.Consumer>
+      </UserConsumer>
     );
   }
 }
