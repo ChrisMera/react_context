@@ -6,6 +6,7 @@ const { Provider, Consumer } = React.createContext();
 // returns an object with two properties =>
 // Context.Consumer, Context.Provider
 
+// holds state and dsitributes the state with the provider
 class UserProvider extends React.Component {
   state = {
     currentUser: FAKE_USER

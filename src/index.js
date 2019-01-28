@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import LoginPage from './LoginPage';
 import MainPage from './MainPage';
 import { UserProvider, UserConsumer } from './UserContext';
+import { EmailProvider } from './EmailContext'; 
 import './index.css';
 
 const Root = () => {
@@ -23,7 +24,11 @@ const Root = () => {
 }
 // Put UserProvider at "top level" bc it may be easier for refactoring later
 ReactDOM.render(
+  // The app has access to the current user
+  // and emails
   <UserProvider>
-    <Root />
+    <EmailProvider>
+      <Root />
+    </EmailProvider>
   </UserProvider>,
   document.querySelector('#root'));
