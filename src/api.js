@@ -1,4 +1,3 @@
-
 export const FAKE_USER = {
   firstName: 'Dave',
   lastName: 'Ceddia',
@@ -47,6 +46,24 @@ export function fetchEmails() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(FAKE_EMAILS);
+    }, 300);
+  });
+}
+
+export function fetchLatestEmails() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(
+        FAKE_EMAILS.map(e => ({
+          ...e,
+          id: Math.random()
+        })).slice(
+          0,
+          Math.floor(
+            Math.random() * (FAKE_EMAILS.length + 1)
+          )
+        )
+      );
     }, 300);
   });
 }

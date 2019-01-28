@@ -4,6 +4,7 @@ import LoginPage from './LoginPage';
 import MainPage from './MainPage';
 import { UserProvider, UserConsumer } from './UserContext';
 import { EmailProvider } from './EmailContext'; 
+import { NotificationProvider } from './NotificationContext';
 import './index.css';
 
 const Root = () => {
@@ -26,9 +27,12 @@ const Root = () => {
 ReactDOM.render(
   // The app has access to the current user
   // and emails
-  <UserProvider>
-    <EmailProvider>
-      <Root />
-    </EmailProvider>
-  </UserProvider>,
+  // wrap everything with HOC NotificationProvider
+  <NotificationProvider>
+    <UserProvider>
+      <EmailProvider>
+        <Root />
+      </EmailProvider>
+    </UserProvider>
+  </NotificationProvider>,
   document.querySelector('#root'));
